@@ -1,5 +1,5 @@
 from time import sleep
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 from boxview import BoxViewClient
 
 app = Flask(__name__)
@@ -32,7 +32,7 @@ def upload_document():
 
     print 'Document ID is {}'.format(document_id)
 
-    return document_id
+    return jsonify(document)
 
 
 @app.route('/session', methods=['POST'])
@@ -61,7 +61,12 @@ def create_session():
 
     print 'Session is {}'.format(session_url)
 
-    return session_url
+    combined_response = {
+        'session_url': session_url,
+        'session': session
+    }
+
+    return jsonify(combined_response)
 
 if __name__ == '__main__':
     app.debug = True
