@@ -5,29 +5,33 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<script type="text/javascript">
+  var analytics=analytics||[];(function(){var e=["identify","track","trackLink","trackForm","trackClick","trackSubmit","page","pageview","ab","alias","ready","group"],t=function(e){return function(){analytics.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var n=0;n<e.length;n++)analytics[e[n]]=t(e[n])})(),analytics.load=function(e){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"===document.location.protocol?"https://":"http://")+"d2dq2ahtl5zl1z.cloudfront.net/analytics.js/v1/"+e+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n)};
+  analytics.load("q89wwz6azr");
+</script>
 </head>
 <body>
     <div class="row" id="section-1">
         <div class="col-md-4 col-md-offset-4 vertically-centered">
-            <form role="form">
+            <form id="set-token" role="form">
                 <div class="form-group">
                     <label for="box-view-token"><h2 id="section-1-heading">Enter your Box View API key.</h2></label>
-                    <input class="form-control input-lg" id="box-view-token" placeholder="View API key">
+                    <input class="form-control input-lg" id="box-view-token" placeholder="Your View API key">
                     <span class="help-block"><a href="http://bit.ly/boxapikey" target="_blank">Click here to get a Box View API key</a>.</span>
                 </div>
-                <a id="token-button" class="btn btn-default btn-lg btn-block">Next Step...</a>
+                <button type="submit" id="token-button" class="btn btn-default btn-lg btn-block">Next Step...</a>
             </form>
         </div>
     </div>
     <div class="row" id="section-2">
         <div class="col-md-3 col-md-offset-1 vertically-centered">
-            <form role="form">
+            <form id="convert-document" role="form">
                 <div class="form-group">
                     <label for="document-url"><h2>Enter the URL of a PDF or Office document to convert.</h2></label>
                     <input type="url" class="form-control input-lg" id="document-url" placeholder="URL ending in .pdf, .doc(x), .ppt(x), or .xls(x)">
                     <span class="help-block"><a href="" id="url-help">Help! Fill one in for me!</a></span>
                 </div>
-                <a id="convert-button" class="btn btn-default btn-lg btn-block">Convert Document</a>
+                <button type="submit" id="convert-button" class="btn btn-default btn-lg btn-block">Convert Document</a>
             </form>
         </div>
         <div class="col-md-6 col-md-offset-1 vertically-centered">
@@ -48,13 +52,13 @@
     </div>
     <div class="row" id="section-3">
         <div class="col-md-3 col-md-offset-1 vertically-centered">
-            <form role="form">
+            <form id="create-session" role="form">
                 <div class="form-group">
                     <label for="document-url"><h2>Enter the ID of the document to create a viewing session.</h2></label>
                     <input class="form-control input-lg" id="document-id" placeholder="The document id">
                     <span id="document-id-help" class="help-block"></span>
                 </div>
-                <a href="" id="session-button" class="btn btn-default btn-lg btn-block">Create Session</a>
+                <button type="submit" id="session-button" class="btn btn-default btn-lg btn-block">Create Session</a>
             </form>
         </div>
         <div class="col-md-6 col-md-offset-1 vertically-centered">
@@ -81,13 +85,15 @@
     <div class="row" id="section-4">
         <div class="col-md-3 col-md-offset-1 vertically-centered">
             <h1>Congratulations, you converted your first document!</h1>
+            <h2 id="scroll-help">(Try scrolling it!)</h2>
         </div>
-        <div class="col-xs-8">
-            <div id="contentframe"><iframe seamless=""></iframe></div>
+        <div class="col-xs-8 contentframe">
+            <iframe data-toggle="tooltip" data-placement="left" title="Try scrolling this!" seamless=""></iframe>
         </div>
     </div>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <script src="{{ url_for('static', filename='js/animations-min.js') }}"></script>
+    <script src="{{  url_for('static', filename='js/animations-min.js') }}"></script>
 </body>
 </html>

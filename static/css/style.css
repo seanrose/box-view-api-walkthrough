@@ -1,25 +1,51 @@
-body, .help-block, a {
+@font-face{
+    font-family: 'Museo Sans';
+    src: url('../fonts/MuseoSans_500-webfont.eot');
+    src: url('../fonts/MuseoSans_500-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/MuseoSans_500-webfont.woff') format('woff'),
+         url('../fonts/MuseoSans_500-webfont.ttf') format('truetype'),
+         url('../fonts/MuseoSans_500-webfont.svg#webfont') format('svg');
+}
+
+body, html, .row, .contentframe {
+    height: 100%;
+}
+
+h1, h2, body, .help-block, a {
     color: rgb(255, 250, 250);
+    font-family: 'Museo Sans', sans-serif;
+}
+
+.form-control:focus {
+    border-color: #B0E994;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(176, 233, 148, 1);
+    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(176, 233, 148, 1);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(176, 233, 148, 1);
 }
 
 a:hover {
     color: rgb(206, 201, 197);
 }
 
-.btn {
+.btn, .btn:focus {
     background-color: rgba(176, 233, 148, 1);
+    outline: none;
 }
 
 .btn:hover {
     background-color: rgba(176, 233, 148, .9);
 }
 
-.btn:focus, .btn:active {
+.btn:active {
     background-color: rgba(176, 233, 148, .8);
 }
 
 pre {
     font-family: 'Source Code Pro', sans-serif;
+    display: none;
+}
+
+#document-id-help, #scroll-help, .btn, iframe {
     display: none;
 }
 
@@ -44,19 +70,14 @@ pre {
     background-color: rgb(87, 193, 125);
 }
 
-.row {
-    height: 100vh;
-}
-
 .vertically-centered {
     top: 30%;
 }
 
 iframe {
     border: none;
+    height: 100%;
     width: 100%;
-    height: 100vh;
-    display: none;
 }
 
 .tooltip-inner {

@@ -1,29 +1,75 @@
-/*global $ */
+/*global $, analytics */
 
 // Utility function for sliding from section to section
 function slideToNextRow(selector, delay) {
     var activeRowIndex = $('.row').index($(selector).closest('.row'));
     var nextRow = $('.row')[activeRowIndex + 1];
     $('html, body').delay(delay).animate({scrollTop: $(nextRow).offset().top},'slow');
+
     return false;
 }
 
+// Builds the curl request for uploading a file
+function buildUploadRequestString(boxViewAPIKey, url) {
+    var firstPiece = 'curl https:\/\/view-api.box.com\/1\/documents \\\r\n-H \"Authorization: Token ';
+    var secondPiece = '\" \\\r\n-H \"Content-Type: application\/json\" \\\r\n-d \'{\"url\": \"';
+    var thirdPiece = '\"}\' \\\r\n-X POST';
+    return firstPiece + boxViewAPIKey + secondPiece + url + thirdPiece;
+}
+
+// Build the curl request for creating a session
+function buildSessionRequestString(boxViewAPIKey, documentID) {
+    var firstPiece = 'curl https:\/\/view-api.box.com\/1\/sessions \\\r\n-H \"Authorization: Token ';
+    var secondPiece = '\" \\\r\n-H \"Content-Type: application\/json\" \\\r\n-d \'{\"document_id\": \"';
+    var thirdPiece = '\"}\' \\\r\n-X POST';
+    return firstPiece + boxViewAPIKey + secondPiece + documentID + thirdPiece;
+}
+
+// Unbinds submit events
+function unbindSubmitEvents(selector) {
+    $(selector).off('submit');
+    $(selector).find('input').off('blur');
+}
+
+// Re-centers the viewport on blur for a field
+// (necessary for iOS and mobile devices that move the viewport because of keyboards)
+$('input').blur(function() {
+    $(this).off('blur');
+    var activeRow = $(this).closest('.row');
+    $('html, body').animate({scrollTop: $(activeRow).offset().top},'fast');
+});
+
+// Buttons are hidden until someone starts typing, at which point they fade in
+$('input').focus(function() {
+    $(this).off('focus');
+    $(this).parent().siblings('button').delay('slow').fadeIn();
+});
+
+// Autofills a PDF URL if the user doesn't have one
 $('#url-help').click(function() {
+    analytics.track("Clicked Document Help URL");
     var url = "https://cloud.box.com/shared/static/4qhegqxubg8ox0uj5ys8.pdf";
-    $('#document-url').val(url);
+    $('#document-url').val(url).focus();
+
     return false;
 });
 
 // Set the API token on window
-$('#token-button').click(function() {
-    $(this).off('click');
+$('#set-token').submit(function() {
+    analytics.track("Set API Key");
+    unbindSubmitEvents(this);
     slideToNextRow(this, 0);
+    // Set the View API token on window (less than ideal, but w/e)
     window.boxViewToken = $('#box-view-token').val();
+
+    return false;
 });
 
 // Send the URL to Box View for conversion
-$('#convert-button').click(function() {
-    $(this).off('click');
+$('#convert-document').submit(function() {
+    analytics.track("Uploaded Document for Conversion");
+    unbindSubmitEvents(this);
+    // Call to the server which uploads the document to the View API
     $.ajax({
         type: 'POST',
         contentType: 'application/json',
@@ -34,9 +80,16 @@ $('#convert-button').click(function() {
         dataType: 'json',
         url: '/upload',
     }).done(function(data) {
-        $('#convert-result, #document-result-copy').text(JSON.stringify(data, undefined, 2));
-        $('#document-id-help').text("Hint, it's: " + data.id);
+        // Trolling
+        data.status = 'done';
+        // Add a span around the document ID so we can highlight it later
+        data.id = '<span>' + data.id + '</span>';
+        $('#convert-result, #document-result-copy').html(JSON.stringify(data, undefined, 2));
+        // Set the Document ID in the emergency help text
+        $('#document-id-help').html("Hint, it's: " + data.id);
     });
+
+    $('#convert-code').text(buildUploadRequestString(window.boxViewToken, $('#document-url').val()));
 
     $('#convert-code').fadeIn('slow', function() {
         $(this).delay(500).tooltip('show');
@@ -45,14 +98,20 @@ $('#convert-button').click(function() {
             $('#convert-button')
                 .click(function() {
                     slideToNextRow(this, 0);
-                    $('#document-result-copy').delay(200).fadeIn().animate({top: 0}, 1000);
-                    $('iframe').delay('slow').fadeIn('slow');
+                    // Slide down a copy of the document creation to make it seem like it's "following you"
+                    $('#document-result-copy').delay(1000).show().animate({top: 0}, 1000, function() {
+                        // Flash the document ID to help
+                        window.setInterval(function () {
+                            $('#document-result-copy').children('span').effect('highlight', {color: '#B0E994'}, 800);
+                        }, 1000);
+                        // If they REALLY don't get it, an explicit hint
+                        $('#document-id-help').delay(10000).fadeIn();
+                    });
                     return false;
                 })
                 .delay(1000)
                 .animate({'opacity':'.3'}, function() {
-                    $(this).text('Got it! Next step...', function() {
-                    }).animate({'opacity':'1'});
+                    $(this).text('Got it! Next step...').animate({'opacity':'1'});
             });
         });
     });
@@ -61,8 +120,10 @@ $('#convert-button').click(function() {
 });
 
 // Creates a session for the document ID
-$('#session-button').click(function() {
-    $(this).off('click');
+$('#create-session').submit(function() {
+    analytics.track("Created Session");
+    unbindSubmitEvents(this);
+    // Call to the server which requests a session from the View API
     $.ajax({
         type: 'POST',
         contentType: 'application/json',
@@ -73,25 +134,35 @@ $('#session-button').click(function() {
         dataType: 'json',
         url: '/session',
     }).done(function(data) {
+        // Load the hidden iframe into the page as soon as possible
         $('iframe').attr('src', data.session_url);
     });
 
+    $('#session-code').text(buildSessionRequestString(window.boxViewToken, $('#document-id').val()));
+
+    // Remove the document result
     $('#document-result-copy').fadeOut('fast', function() {
+        // Fade in the API request
         $('#session-code').fadeIn('slow', function() {
             $(this).delay(500).tooltip('show');
+            // Fade in the API response
             $('#session-result').delay(1000).fadeIn('slow', function() {
                 $(this).delay(500).tooltip('show');
                 $('#session-button')
                     .click(function() {
                         slideToNextRow(this, 0);
-                        $('iframe').delay('slow').fadeIn('slow');
+                        // Fade in the View iframe, make it feel magical!
+                        $('iframe').delay(1000).fadeIn('slow', function() {
+                            // A help text in case they don't realize you can scroll the iframe
+                            $('#scroll-help').delay(1200).fadeIn('slow');
+                        });
+                        analytics.track("Completed Quickstart");
                         return false;
                     })
                     .delay(1000)
                     .animate({'opacity':'.3'}, function() {
-                        $(this).text('Got it! Next step...', function() {
-                        }).animate({'opacity':'1'});
-                });
+                        $(this).text('Got it! Next step...').animate({'opacity':'1'});
+                    });
             });
         });
     });
