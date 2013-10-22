@@ -27,7 +27,7 @@ def upload_document():
     box_view_client = BoxViewClient(box_view_token)
 
     url = request_json['url']
-    document = box_view_client.upload_document(url)
+    document = box_view_client.upload_document(url).json()
     document_id = document['id']
 
     print 'Document ID is {}'.format(document_id)
@@ -56,7 +56,7 @@ def create_session():
         sleep(1)
         document_ready = box_view_client.ready_to_view(document_id)
 
-    session = box_view_client.create_session(document_id)
+    session = box_view_client.create_session(document_id).json()
     session_url = box_view_client.create_session_url(session['id'])
 
     print 'Session is {}'.format(session_url)

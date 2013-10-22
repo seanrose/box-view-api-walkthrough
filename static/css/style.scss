@@ -1,0 +1,185 @@
+/* Typography */
+
+@font-face{
+    font-family: 'Museo Sans';
+    src: url('../fonts/MuseoSans_500-webfont.eot');
+    src: url('../fonts/MuseoSans_500-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/MuseoSans_500-webfont.woff') format('woff'),
+         url('../fonts/MuseoSans_500-webfont.ttf') format('truetype'),
+         url('../fonts/MuseoSans_500-webfont.svg#webfont') format('svg');
+}
+
+h1, h2, body, .help-block, a {
+    color: rgb(255, 250, 250);
+    font-family: 'Museo Sans', sans-serif;
+}
+
+a:hover {
+    color: rgb(206, 201, 197);
+}
+
+pre {
+    font-family: 'Source Code Pro', sans-serif;
+}
+
+.tooltip-inner {
+    font-size: 150%;
+}
+
+body, html, .row, .contentframe {
+    height: 100%;
+}
+
+.information {
+    text-align: center;
+}
+
+/* Images */
+
+img {
+    margin: auto;
+}
+
+.svg {
+  width: 62.5%;
+}
+
+.form-control:focus {
+    border-color: #B0E994;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(176, 233, 148, 1);
+    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(176, 233, 148, 1);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(176, 233, 148, 1);
+}
+
+
+
+.btn, .btn:focus {
+    background-color: rgba(176, 233, 148, 1);
+    outline: none;
+}
+
+.btn:hover {
+    background-color: rgba(176, 233, 148, .9);
+}
+
+.btn:active {
+    background-color: rgba(176, 233, 148, .8);
+}
+
+/* Things that start hidden */
+
+#document-id-help,
+#scroll-help-1,
+#scroll-help-2 {
+    display: none;
+}
+
+.transparent {
+    opacity: 0;
+}
+
+#document-result-copy {
+    position: relative;
+    top: -2000px;
+}
+
+/* Styling for each section */
+
+.grey {
+    background-color: rgb(35, 42, 51);
+}
+
+.dark-green {
+    background-color: rgb(42, 104, 75);
+}
+
+.blue {
+    background-color: rgb(63, 165, 169);
+}
+
+.light-green {
+    background-color: rgb(87, 193, 125);
+}
+
+.vertically-centered {
+    top: 30%;
+}
+
+.full-height {
+  height: 100%
+}
+
+/* The ghost, nudged to maintain perfect centering */
+.full-height:before {
+  content: '';
+  height: 100%;
+}
+
+/* The element to be centered, can
+   also be of any width and height */
+.centered {
+  margin-top: 50%;
+}
+
+.centered-large {
+  margin-top: 25%;
+}
+
+
+/* Animations */
+
+.flashing-highlight {
+  -webkit-animation: flashHighlight 1.2s .5s ease-in-out infinite;
+     -moz-animation: flashHighlight 1.2s .5s ease-in-out infinite;
+       -o-animation: flashHighlight 1.2s .5s ease-in-out infinite;
+          animation: flashHighlight 1.2s .5s ease-in-out infinite;
+}
+
+@-webkit-keyframes flashHighlight { 0% { background-color: transparent; } 50% { background-color: #B0E994; } 100% { background-color: transparent; } }
+   @-moz-keyframes flashHighlight { 0% { background-color: transparent; } 50% { background-color: #B0E994; } 100% { background-color: transparent; } }
+     @-o-keyframes flashHighlight { 0% { background-color: transparent; } 50% { background-color: #B0E994; } 100% { background-color: transparent; } }
+        @keyframes flashHighlight { 0% { background-color: transparent; } 50% { background-color: #B0E994; } 100% { background-color: transparent; } }
+
+.fade-in {
+  -webkit-animation: fadeIn 1.2s .5s forwards;
+     -moz-animation: fadeIn 1.2s .5s forwards;
+       -o-animation: fadeIn 1.2s .5s forwards;
+          animation: fadeIn 1.2s .5s forwards;
+}
+
+@-webkit-keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 100; } }
+   @-moz-keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 100; } }
+     @-o-keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 100; } }
+        @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 100; } }
+
+.fade-out {
+  -webkit-animation: fadeOut 1.2s 1.2s forwards;
+     -moz-animation: fadeOut 1.2s 1.2s forwards;
+       -o-animation: fadeOut 1.2s 1.2s forwards;
+          animation: fadeOut 1.2s 1.2s forwards;
+}
+
+@-webkit-keyframes fadeOut { 0% { opacity: 100; } 100% { opacity: 0; } }
+   @-moz-keyframes fadeOut { 0% { opacity: 100; } 100% { opacity: 0; } }
+     @-o-keyframes fadeOut { 0% { opacity: 100; } 100% { opacity: 0; } }
+        @keyframes fadeOut { 0% { opacity: 100; } 100% { opacity: 0; } }
+
+.shrink-up {
+  -webkit-animation: shrinkUp 1.2s 2.4s forwards;
+     -moz-animation: shrinkUp 1.2s 2.4s forwards;
+       -o-animation: shrinkUp 1.2s 2.4s forwards;
+          animation: shrinkUp 1.2s 2.4s forwards;
+}
+
+@-webkit-keyframes shrinkUp { 0% { opacity: 100; width: 62.5%; margin-bottom: 0; } 100% { opacity: 0; width: 0; margin-bottom: 100%; } }
+   @-moz-keyframes shrinkUp { 0% { opacity: 100; width: 62.5%; margin-bottom: 0; } 100% { opacity: 0; width: 0; margin-bottom: 100%; } }
+     @-o-keyframes shrinkUp { 0% { opacity: 100; width: 62.5%; margin-bottom: 0; } 100% { opacity: 0; width: 0; margin-bottom: 100%; } }
+        @keyframes shrinkUp { 0% { opacity: 100; width: 62.5%; margin-bottom: 0; } 100% { opacity: 0; width: 0; margin-bottom: 100%; } }
+
+/* Miscellaneous */
+
+iframe {
+    border: none;
+    height: 100%;
+    width: 100%;
+}

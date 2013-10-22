@@ -11,36 +11,63 @@
 </script>
 </head>
 <body>
-    <div class="row" id="section-1">
-        <div class="col-md-4 col-md-offset-4 vertically-centered">
-            <form id="set-token" role="form">
-                <div class="form-group">
-                    <label for="box-view-token"><h2 id="section-1-heading">Enter your Box View API key.</h2></label>
-                    <input class="form-control input-lg" id="box-view-token" placeholder="Your View API key">
-                    <span class="help-block"><a href="http://bit.ly/boxapikey" target="_blank">Click here to get a Box View API key</a>.</span>
+    <div class="row grey" id="section-0">
+        <div class="col-md-6 col-md-offset-3 information full-height">
+            <div class="row">
+                <div class="centered-large">
+                    <h1 id="welcome" class="transparent">Box View is the world's most advanced document conversion platform.</h1>
+                    <img id="crocobox" src="{{ url_for('static', filename='img/crocobox.png') }}" class="img-responsive transparent" alt="Crocobox Logo">
+                    <p id="motivation" class="lead transparent">Convert your first document in less than a minute!</p>
+                    <br>
+                    <button id="get-started" class="btn btn-default btn-lg btn-block transparent">Get Started</button>
                 </div>
-                <button type="submit" id="token-button" class="btn btn-default btn-lg btn-block">Next Step...</a>
-            </form>
+            </div>
         </div>
     </div>
-    <div class="row" id="section-2">
-        <div class="col-md-3 col-md-offset-1 vertically-centered">
-            <form id="convert-document" role="form">
-                <div class="form-group">
-                    <label for="document-url"><h2>Enter the URL of a PDF or Office document to convert.</h2></label>
-                    <input type="url" class="form-control input-lg" id="document-url" placeholder="URL ending in .pdf, .doc(x), .ppt(x), or .xls(x)">
-                    <span class="help-block"><a href="" id="url-help">Help! Fill one in for me!</a></span>
+    <div class="row grey" id="section-1">
+        <div class="col-md-4 col-md-offset-4 full-height">
+            <div class="row">
+                <form id="set-token" class="centered" role="form">
+                    <div class="form-group">
+                        <label for="box-view-token"><h2 id="section-1-heading">Enter your Box View API key.</h2></label>
+                        <input class="form-control input-lg" id="box-view-token" placeholder="Your View API key">
+                        <span class="help-block"><a href="http://bit.ly/boxapikey" target="_blank">Don't have one? Click here to get a Box View API key</a>.</span>
+                    </div>
+                    <button type="submit" id="token-button" class="btn btn-default btn-lg btn-block">Next Step...</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row dark-green" id="section-2">
+        <div class="col-md-6 col-md-offset-3 information full-height">
+            <div class="row">
+                <div class="centered-large">
+                    <img id="upload-svg" src="{{ url_for('static', filename='img/upload.svg') }}" class="img-responsive svg" alt="Upload Cloud">
+                    <h2 id="upload-prompt">First upload a document to convert!</h2>
                 </div>
-                <button type="submit" id="convert-button" class="btn btn-default btn-lg btn-block">Convert Document</a>
-            </form>
+            </div>
+        </div>
+    </div>
+    <div class="row dark-green" id="section-2">
+        <div class="col-md-3 col-md-offset-1 full-height">
+            <div class="row">
+                <form class="centered" id="convert-document" role="form">
+                    <div class="form-group">
+                        <label for="document-url"><h2>Enter the URL of a PDF or Office document to convert.</h2></label>
+                        <input type="url" class="form-control input-lg" id="document-url" placeholder="URL ending in .pdf, .doc(x), .ppt(x), or .xls(x)">
+                        <span class="help-block"><a href="" id="url-help">Help! Fill one in for me!</a></span>
+                    </div>
+                    <button type="submit" id="convert-button" class="btn btn-default btn-lg btn-block">Convert Document</button>
+                </form>
+            </div>
         </div>
         <div class="col-md-6 col-md-offset-1 vertically-centered">
-            <pre data-toggle="tooltip" data-placement="top" title="The API request" id="convert-code">curl https://view-api.box.com/1/documents \
+            <pre class="transparent" data-toggle="tooltip" data-delay="1700" data-placement="top" title="The API request" id="convert-code">curl https://view-api.box.com/1/documents \
 -H "Authorization: Token YOUR_API_KEY" \
 -H "Content-Type: application/json" \
 -d '{"url": "https://cloud.box.com/shared/static/4qhegqxubg8ox0uj5ys8.pdf"}' \
 -X POST</pre>
-            <pre data-toggle="tooltip" data-placement="bottom" title="The response from the API" id="convert-result">{
+            <pre class="transparent" data-toggle="tooltip" data-delay="1700" data-placement="bottom" title="The response from the API" id="convert-result">{
     "type": "document",
     "id": "2da6cf9261824fb0a4fe532f94d14625",
     "status": "done",
@@ -50,19 +77,19 @@
 }</pre>
         </div>
     </div>
-    <div class="row" id="section-3">
+    <div class="row blue" id="section-3">
         <div class="col-md-3 col-md-offset-1 vertically-centered">
             <form id="create-session" role="form">
                 <div class="form-group">
-                    <label for="document-url"><h2>Enter the ID of the document to create a viewing session.</h2></label>
+                    <label for="document-url"><h2>Enter the id of the document to create a viewing session.</h2></label>
                     <input class="form-control input-lg" id="document-id" placeholder="The document id">
                     <span id="document-id-help" class="help-block"></span>
                 </div>
-                <button type="submit" id="session-button" class="btn btn-default btn-lg btn-block">Create Session</a>
+                <button type="submit" id="session-button" class="btn btn-default btn-lg btn-block">Create Session</button>
             </form>
         </div>
         <div class="col-md-6 col-md-offset-1 vertically-centered">
-            <pre data-toggle="tooltip" data-placement="bottom" title="The response from the API" id="document-result-copy">{
+            <pre class="transparent" data-toggle="tooltip" data-delay="1700" data-placement="bottom" title="The response from the API" id="document-result-copy">{
     "type": "document",
     "id": "2da6cf9261824fb0a4fe532f94d14625",
     "status": "done",
@@ -70,29 +97,34 @@
     "created_at": "2013-08-30T00:17:37Z",
     "modified_at": "2013-08-30T00:17:37Z"
 }</pre>
-            <pre data-toggle="tooltip" data-placement="top" title="The API request" id="session-code">curl https://view-api.box.com/1/sessions \
+            <pre class="transparent" data-toggle="tooltip" data-delay="1700" data-placement="top" title="The API request" id="session-code">curl https://view-api.box.com/1/sessions \
 -H "Authorization: Token YOUR_API_KEY" \
 -H "Content-Type: application/json" \
 -d '{"document_id": "ABC123"}' \
 -X POST</pre>
-            <pre data-toggle="tooltip" data-placement="bottom" title="The response from the API" id="session-result">{
+            <pre class="transparent" data-toggle="tooltip" data-delay="1700" data-placement="bottom" title="The response from the API" id="session-result">{
     "type": "session",
     "id": "IyA4Ij8IzE_Wih20hML3ihxEOul1T4rxHLBtwa4IRg9m-FApz80OtEwst_RmnGq8SzJRsGaEU0UWSotJCW33KUeJ0Ah5uQ",
     "expires_at": "2013-09-11T19:52:09Z"
 }</pre>
         </div>
     </div>
-    <div class="row" id="section-4">
+    <div class="row light-green" id="section-4">
         <div class="col-md-3 col-md-offset-1 vertically-centered">
             <h1>Congratulations, you converted your first document!</h1>
-            <h2 id="scroll-help">(Try scrolling it!)</h2>
+            <h3 id="scroll-help-1">Try scrolling it,</h3>
+            <h3 id="scroll-help-2"><a id="scroll-help-2-link" href="" target="_blank">or click here to open it in a new tab!</a></h3>
         </div>
         <div class="col-xs-8 contentframe">
-            <iframe data-toggle="tooltip" data-placement="left" title="Try scrolling this!" seamless=""></iframe>
+            <iframe class="transparent" data-toggle="tooltip" data-delay="1700" data-placement="left" title="Try scrolling this!" seamless=""></iframe>
+        </div>
+    </div>
+    <div class="row light-green" id="section-5">
+        <div class="col-md-6 col-md-offset-3 vertically-centered information">
+            <h1><a href="http://developers.box.com/view/" target="_blank">Click here to read the docs and see what else is possible with the Box View API!</a></h1>
         </div>
     </div>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="{{  url_for('static', filename='js/animations-min.js') }}"></script>
 </body>

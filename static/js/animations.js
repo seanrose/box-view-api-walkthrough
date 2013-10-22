@@ -1,4 +1,4 @@
-/*global $, analytics */
+/* global $, analytics */
 
 // Utility function for sliding from section to section
 function slideToNextRow(selector, delay) {
@@ -31,6 +31,23 @@ function unbindSubmitEvents(selector) {
     $(selector).find('input').off('blur');
 }
 
+function uploadAnimation() {
+    $('#upload-svg').addClass('shrink-up');
+    $('#upload-prompt').addClass('fade-out');
+    slideToNextRow('#upload-svg', 2100);
+}
+
+// Transition in the welcome screen
+$('#welcome').delay('slow').addClass('fade-in', function () {
+    $('#crocobox').delay(400).addClass('fade-in', function() {
+        $('#motivation').delay(1500).addClass('fade-in', function() {
+            $('#get-started').addClass('fade-in').click(function() {
+                slideToNextRow(this, 0);
+            });
+        });
+    });
+});
+
 // Re-centers the viewport on blur for a field
 // (necessary for iOS and mobile devices that move the viewport because of keyboards)
 $('input').blur(function() {
@@ -42,7 +59,7 @@ $('input').blur(function() {
 // Buttons are hidden until someone starts typing, at which point they fade in
 $('input').focus(function() {
     $(this).off('focus');
-    $(this).parent().siblings('button').delay('slow').fadeIn();
+    $(this).parent().siblings('button').delay('slow');
 });
 
 // Autofills a PDF URL if the user doesn't have one
@@ -61,9 +78,11 @@ $('#set-token').submit(function() {
     slideToNextRow(this, 0);
     // Set the View API token on window (less than ideal, but w/e)
     window.boxViewToken = $('#box-view-token').val();
-
+    uploadAnimation();
     return false;
 });
+
+
 
 // Send the URL to Box View for conversion
 $('#convert-document').submit(function() {
@@ -91,21 +110,16 @@ $('#convert-document').submit(function() {
 
     $('#convert-code').text(buildUploadRequestString(window.boxViewToken, $('#document-url').val()));
 
-    $('#convert-code').fadeIn('slow', function() {
-        $(this).delay(500).tooltip('show');
-        $('#convert-result').delay(1000).fadeIn('slow', function() {
-            $(this).delay(500).tooltip('show');
+    $('#convert-code').addClass('fade-in', function() {
+        $(this).tooltip('toggle');
+        $('#convert-result').delay(1000).addClass('fade-in', function() {
+            $(this).tooltip('toggle');
             $('#convert-button')
                 .click(function() {
                     slideToNextRow(this, 0);
                     // Slide down a copy of the document creation to make it seem like it's "following you"
-                    $('#document-result-copy').delay(1000).show().animate({top: 0}, 1000, function() {
-                        // Flash the document ID to help
-                        window.setInterval(function () {
-                            $('#document-result-copy').children('span').effect('highlight', {color: '#B0E994'}, 800);
-                        }, 1000);
-                        // If they REALLY don't get it, an explicit hint
-                        $('#document-id-help').delay(10000).fadeIn();
+                    $('#document-result-copy').addClass('fade-in').animate({top: 0}, 1000, function() {
+                        $(this).children('span').addClass('flashing-highlight');
                     });
                     return false;
                 })
@@ -136,6 +150,7 @@ $('#create-session').submit(function() {
     }).done(function(data) {
         // Load the hidden iframe into the page as soon as possible
         $('iframe').attr('src', data.session_url);
+        $('#scroll-help-2-link').attr('href', data.session_url);
     });
 
     $('#session-code').text(buildSessionRequestString(window.boxViewToken, $('#document-id').val()));
@@ -143,18 +158,20 @@ $('#create-session').submit(function() {
     // Remove the document result
     $('#document-result-copy').fadeOut('fast', function() {
         // Fade in the API request
-        $('#session-code').fadeIn('slow', function() {
-            $(this).delay(500).tooltip('show');
+        $('#session-code').addClass('fade-in', function() {
+            $(this).tooltip('toggle');
             // Fade in the API response
-            $('#session-result').delay(1000).fadeIn('slow', function() {
-                $(this).delay(500).tooltip('show');
+            $('#session-result').delay(500).addClass('fade-in', function() {
+                $(this).tooltip('toggle');
                 $('#session-button')
                     .click(function() {
                         slideToNextRow(this, 0);
                         // Fade in the View iframe, make it feel magical!
-                        $('iframe').delay(1000).fadeIn('slow', function() {
+                        $('iframe').delay(1000).addClass('fade-in', function() {
                             // A help text in case they don't realize you can scroll the iframe
-                            $('#scroll-help').delay(1200).fadeIn('slow');
+                            $('#scroll-help-1').delay(1200).fadeIn('slow', function() {
+                                $('#scroll-help-2').delay(600).fadeIn('slow');
+                            });
                         });
                         analytics.track("Completed Quickstart");
                         return false;

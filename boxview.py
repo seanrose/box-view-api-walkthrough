@@ -2,10 +2,12 @@ import os
 import requests
 import simplejson as json
 import settings as s
+from boxviewerror import raise_for_view_error
 
 DOCUMENTS_RESOURCE = '/documents'
 SESSIONS_RESOURCE = '/sessions'
 
+PROCESSING = 'processing'
 DONE = 'done'
 
 
@@ -48,6 +50,7 @@ class BoxViewClient(object):
 
     # Core API Methods
 
+    @raise_for_view_error
     def upload_document(self, url):
         """
         """
@@ -58,8 +61,9 @@ class BoxViewClient(object):
 
         response = self.requests.post(resource, headers=headers, data=data)
 
-        return response.json()
+        return response
 
+    @raise_for_view_error
     def get_document(self, document_id):
         """
         """
@@ -72,8 +76,9 @@ class BoxViewClient(object):
 
         response = self.requests.get(resource)
 
-        return response.json()
+        return response
 
+    @raise_for_view_error
     def create_session(self, document_id):
         """
         """
@@ -84,7 +89,7 @@ class BoxViewClient(object):
 
         response = self.requests.post(resource, headers=headers, data=data)
 
-        return response.json()
+        return response
 
     # Convenience Methods
 
@@ -100,7 +105,7 @@ class BoxViewClient(object):
         """
         """
 
-        document = self.get_document(document_id)
+        document = self.get_document(document_id).json()
 
         return document['status']
 
