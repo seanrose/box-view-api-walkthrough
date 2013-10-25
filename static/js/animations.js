@@ -37,30 +37,53 @@ function uploadAnimation() {
     slideToNextRow('#upload-svg', 2100);
 }
 
-// Transition in the welcome screen
-$('#welcome').delay('slow').addClass('fade-in', function () {
-    $('#crocobox').delay(400).addClass('fade-in', function() {
-        $('#motivation').delay(1500).addClass('fade-in', function() {
-            $('#get-started').addClass('fade-in').click(function() {
-                slideToNextRow(this, 0);
-            });
+function convertAnimation() {
+    $('#doc-svg').addClass('spin-and-fade-out');
+    slideToNextRow('#doc-svg', 4800);
+}
+
+$.fn.cssFadeOut = function() {
+    $(this).removeClass('transparent fade-in')
+        .addClass('fade-switch')
+        .delay(400).queue( function(next) {
+            $(this).text('Got it! Next step...');
+            next();
         });
+    return this;
+};
+
+// Transition in the welcome screen
+function welcomeAnimation() {
+    $('#welcome, #crocobox, #motivation, #get-started').addClass('fade-in');
+    $('#get-started').addClass('fade-in').click(function() {
+        slideToNextRow(this, 0);
     });
-});
+}
+
+// Slide down a copy of the document creation to make it seem like it's "following you"
+function slideInUploadResult() {
+    $('#document-result-copy').addClass('fade-in').animate({top: 0}, 1000, function() {
+        $(this).children('span').addClass('flashing-highlight');
+    });
+}
 
 // Re-centers the viewport on blur for a field
 // (necessary for iOS and mobile devices that move the viewport because of keyboards)
-$('input').blur(function() {
-    $(this).off('blur');
-    var activeRow = $(this).closest('.row');
-    $('html, body').animate({scrollTop: $(activeRow).offset().top},'fast');
-});
+function recenterScreenOnBlur() {
+    $('input').blur(function() {
+        $(this).off('blur');
+        var activeRow = $(this).closest('.row');
+        $('html, body').animate({scrollTop: $(activeRow).offset().top},'fast');
+    });
+}
 
 // Buttons are hidden until someone starts typing, at which point they fade in
+function fadeInButtonsOnFocus() {
 $('input').focus(function() {
-    $(this).off('focus');
-    $(this).parent().siblings('button').delay('slow');
-});
+        $(this).off('focus');
+        $(this).parent().siblings('button').addClass('fade-in');
+    });
+}
 
 // Autofills a PDF URL if the user doesn't have one
 $('#url-help').click(function() {
@@ -110,26 +133,23 @@ $('#convert-document').submit(function() {
 
     $('#convert-code').text(buildUploadRequestString(window.boxViewToken, $('#document-url').val()));
 
-    $('#convert-code').addClass('fade-in', function() {
-        $(this).tooltip('toggle');
-        $('#convert-result').delay(1000).addClass('fade-in', function() {
-            $(this).tooltip('toggle');
-            $('#convert-button')
-                .click(function() {
-                    slideToNextRow(this, 0);
-                    // Slide down a copy of the document creation to make it seem like it's "following you"
-                    $('#document-result-copy').addClass('fade-in').animate({top: 0}, 1000, function() {
-                        $(this).children('span').addClass('flashing-highlight');
-                    });
-                    return false;
-                })
-                .delay(1000)
-                .animate({'opacity':'.3'}, function() {
-                    $(this).text('Got it! Next step...').animate({'opacity':'1'});
-            });
+    $('#convert-code').addClass('fade-in').tooltip('toggle');
+    $('#convert-result').delay(1200).queue(function(next) {
+        $(this).addClass('fade-in').tooltip('toggle');
+        $('#convert-button').click(function() {
+            slideToNextRow(this, 0);
+            convertAnimation();
+            slideInUploadResult();
+            return false;
+        })
+        .delay(1700)
+        .queue(function(next) {
+            $(this).cssFadeOut();
+            next();
         });
-    });
 
+        next();
+    });
     return false;
 });
 
@@ -150,39 +170,42 @@ $('#create-session').submit(function() {
     }).done(function(data) {
         // Load the hidden iframe into the page as soon as possible
         $('iframe').attr('src', data.session_url);
-        $('#scroll-help-2-link').attr('href', data.session_url);
+        $('#doc-help-link').attr('href', data.session_url);
     });
 
     $('#session-code').text(buildSessionRequestString(window.boxViewToken, $('#document-id').val()));
 
     // Remove the document result
-    $('#document-result-copy').fadeOut('fast', function() {
+    $('#document-result-copy').removeClass('transparent fade-in').fadeOut('slo', function() {
         // Fade in the API request
-        $('#session-code').addClass('fade-in', function() {
-            $(this).tooltip('toggle');
-            // Fade in the API response
-            $('#session-result').delay(500).addClass('fade-in', function() {
-                $(this).tooltip('toggle');
-                $('#session-button')
-                    .click(function() {
-                        slideToNextRow(this, 0);
-                        // Fade in the View iframe, make it feel magical!
-                        $('iframe').delay(1000).addClass('fade-in', function() {
-                            // A help text in case they don't realize you can scroll the iframe
-                            $('#scroll-help-1').delay(1200).fadeIn('slow', function() {
-                                $('#scroll-help-2').delay(600).fadeIn('slow');
-                            });
-                        });
-                        analytics.track("Completed Quickstart");
-                        return false;
-                    })
-                    .delay(1000)
-                    .animate({'opacity':'.3'}, function() {
-                        $(this).text('Got it! Next step...').animate({'opacity':'1'});
-                    });
+        $('#session-code').addClass('fade-in').tooltip('toggle');
+        // Fade in the API response
+        $('#session-result').delay(1200).queue(function(next) {
+            $(this).addClass('fade-in').tooltip('toggle');
+            $('#session-button').click(function() {
+                slideToNextRow(this, 0);
+                // Fade in the View iframe, make it feel magical!
+                $('iframe').addClass('fade-in');
+                // A help text in case they don't realize you can scroll the iframe
+                $('.doc-help').delay(1200).queue(function(next) {
+                    $(this).addClass('fade-in');
+                    next();
+                });
+                analytics.track("Completed Quickstart");
+                return false;
+            })
+            .delay(1700)
+            .queue(function(next) {
+                $(this).cssFadeOut();
+                next();
             });
+            next();
         });
     });
 
     return false;
 });
+
+welcomeAnimation();
+recenterScreenOnBlur();
+fadeInButtonsOnFocus();

@@ -67,10 +67,8 @@ img {
 }
 
 /* Things that start hidden */
-
 #document-id-help,
-#scroll-help-1,
-#scroll-help-2 {
+#html-svg {
     display: none;
 }
 
@@ -102,29 +100,14 @@ img {
 }
 
 .vertically-centered {
-    top: 30%;
+    top: 25%;
+    height: 100%;
 }
 
-.full-height {
+.vertically-centered-hack {
+  top: 10%;
   height: 100%
 }
-
-/* The ghost, nudged to maintain perfect centering */
-.full-height:before {
-  content: '';
-  height: 100%;
-}
-
-/* The element to be centered, can
-   also be of any width and height */
-.centered {
-  margin-top: 50%;
-}
-
-.centered-large {
-  margin-top: 25%;
-}
-
 
 /* Animations */
 
@@ -147,10 +130,10 @@ img {
           animation: fadeIn 1.2s .5s forwards;
 }
 
-@-webkit-keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 100; } }
-   @-moz-keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 100; } }
-     @-o-keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 100; } }
-        @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 100; } }
+@-webkit-keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+   @-moz-keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+     @-o-keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+        @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
 
 .fade-out {
   -webkit-animation: fadeOut 1.2s 1.2s forwards;
@@ -159,10 +142,22 @@ img {
           animation: fadeOut 1.2s 1.2s forwards;
 }
 
-@-webkit-keyframes fadeOut { 0% { opacity: 100; } 100% { opacity: 0; } }
-   @-moz-keyframes fadeOut { 0% { opacity: 100; } 100% { opacity: 0; } }
-     @-o-keyframes fadeOut { 0% { opacity: 100; } 100% { opacity: 0; } }
-        @keyframes fadeOut { 0% { opacity: 100; } 100% { opacity: 0; } }
+@-webkit-keyframes fadeOut { 0% { opacity: 1; } 100% { opacity: 0; } }
+   @-moz-keyframes fadeOut { 0% { opacity: 1; } 100% { opacity: 0; } }
+     @-o-keyframes fadeOut { 0% { opacity: 1; } 100% { opacity: 0; } }
+        @keyframes fadeOut { 0% { opacity: 1; } 100% { opacity: 0; } }
+
+.fade-switch {
+  -webkit-animation: fadeSwitch .8s;
+     -moz-animation: fadeSwitch .8s;
+       -o-animation: fadeSwitch .8s;
+          animation: fadeSwitch .8s;
+}
+
+@-webkit-keyframes fadeSwitch { 0% { opacity: 1; } 50% { opacity: .3; } 100% { opacity: 1; } }
+   @-moz-keyframes fadeSwitch { 0% { opacity: 1; } 50% { opacity: .3; } 100% { opacity: 1; } }
+     @-o-keyframes fadeSwitch { 0% { opacity: 1; } 50% { opacity: .3; } 100% { opacity: 1; } }
+        @keyframes fadeSwitch { 0% { opacity: 1; } 50% { opacity: .3; } 100% { opacity: 1; } }
 
 .shrink-up {
   -webkit-animation: shrinkUp 1.2s 2.4s forwards;
@@ -175,6 +170,18 @@ img {
    @-moz-keyframes shrinkUp { 0% { opacity: 100; width: 62.5%; margin-bottom: 0; } 100% { opacity: 0; width: 0; margin-bottom: 100%; } }
      @-o-keyframes shrinkUp { 0% { opacity: 100; width: 62.5%; margin-bottom: 0; } 100% { opacity: 0; width: 0; margin-bottom: 100%; } }
         @keyframes shrinkUp { 0% { opacity: 100; width: 62.5%; margin-bottom: 0; } 100% { opacity: 0; width: 0; margin-bottom: 100%; } }
+
+.spin-and-fade-out {
+  -webkit-animation: spinAndFadeOut 2.4s 2.4s forwards ease-in;
+     -moz-animation: spinAndFadeOut 1.2s 2.4s forwards;
+       -o-animation: spinAndFadeOut 1.2s 2.4s forwards;
+          animation: spinAndFadeOut 1.2s 2.4s forwards;
+}
+
+@-webkit-keyframes spinAndFadeOut { 0% { opacity: 100; } 10% { -webkit-transform: rotate(-.1turn); } 100% { opacity: 0; -webkit-transform: rotate(5turn); } }
+   @-moz-keyframes spinAndFadeOut { 0% { opacity: 100; } 100% { opacity: 0; } }
+     @-o-keyframes spinAndFadeOut { 0% { opacity: 100; } 100% { opacity: 0; } }
+        @keyframes spinAndFadeOut { 0% { opacity: 100; } 100% { opacity: 0; } }
 
 /* Miscellaneous */
 
