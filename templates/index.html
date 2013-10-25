@@ -26,7 +26,7 @@
                 <div class="form-group">
                     <label for="box-view-token"><h2 id="section-1-heading">Enter your Box View API key.</h2></label>
                     <input class="form-control input-lg" id="box-view-token" placeholder="Your View API key">
-                    <span class="help-block"><a href="http://bit.ly/boxapikey" target="_blank">Don't have one? Click here to get a Box View API key</a>.</span>
+                    <span class="help-block">Don't have one? <a href="http://bit.ly/boxapikey" target="_blank">Click here to get a Box View API key</a>.</span>
                 </div>
                 <button type="submit" id="token-button" class="btn btn-default btn-lg btn-block transparent">Next Step...</button>
             </form>
@@ -34,8 +34,9 @@
     </div>
     <div class="row dark-green" id="section-2">
         <div class="col-md-6 col-md-offset-3 information vertically-centered">
+            <!-- Cloud Upload icon designed by Adam Whitcroft from The Noun Project http://thenounproject.com/noun/cloud-upload/#icon-No2633 -->
             <img id="upload-svg" src="{{ url_for('static', filename='img/upload.svg') }}" class="img-responsive svg" alt="Upload Cloud">
-            <h2 id="upload-prompt">First upload a document to convert!</h2>
+            <h2 id="upload-prompt">First you need to upload a document to convert!</h2>
         </div>
     </div>
     <div class="row dark-green" id="section-2">
@@ -67,9 +68,11 @@
     </div>
     <div class="row blue" id="section-3">
         <div class="col-md-6 col-md-offset-3 information vertically-centered">
+            <!-- Designed by Prerak Patel from The Noun Project http://thenounproject.com/noun/document/#icon-No4561 -->
             <img id="doc-svg" src="{{ url_for('static', filename='img/document.svg') }}" class="img-responsive svg" alt="Document">
-            <img id="html-svg" src="{{ url_for('static', filename='img/html.svg') }}" class="img-responsive svg transparent" alt="HTML Symbol">
-            <h2 id="session-prompt">And now we magically turning the document into HTML5!</h2>
+            <!-- HTML Code icon Iris Li from The Noun Project http://thenounproject.com/noun/html-code/#icon-No13694 -->
+            <img id="html-svg" src="{{ url_for('static', filename='img/html.svg') }}" class="img-responsive svg transparent hidden" alt="HTML Symbol">
+            <h2 id="session-prompt">And now we magically turn the document into HTML5!</h2>
         </div>
     </div>
     <div class="row blue" id="section-3">
@@ -78,7 +81,7 @@
                 <div class="form-group">
                     <label for="document-url"><h2>Enter the id of the document to create a viewing session.</h2></label>
                     <input class="form-control input-lg" id="document-id" placeholder="The document id">
-                    <span id="document-id-help" class="help-block"></span>
+                    <span id="document-id-help" class="help-block hidden"></span>
                 </div>
                 <button type="submit" id="session-button" class="btn btn-default btn-lg btn-block transparent">Create Session</button>
             </form>

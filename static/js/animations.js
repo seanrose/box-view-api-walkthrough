@@ -31,6 +31,16 @@ function unbindSubmitEvents(selector) {
     $(selector).find('input').off('blur');
 }
 
+// Slide down a copy of the document creation to make it seem like it's "following you"
+function slideInUploadResult() {
+    $('#document-result-copy').delay(3000).queue(function(next) {
+        $(this).addClass('fade-in').animate({top: 0}, 1000, function() {
+            $(this).children('span').addClass('flashing-highlight');
+        });
+        next();
+    });
+}
+
 function uploadAnimation() {
     $('#upload-svg').addClass('shrink-up');
     $('#upload-prompt').addClass('fade-out');
@@ -39,7 +49,13 @@ function uploadAnimation() {
 
 function convertAnimation() {
     $('#doc-svg').addClass('spin-and-fade-out');
-    slideToNextRow('#doc-svg', 4800);
+    $('#html-svg').delay(4800).queue(function(next) {
+        $('#doc-svg').remove();
+        $(this).removeClass('hidden').addClass('fade-in-and-spin');
+        slideToNextRow(this, 3000);
+        slideInUploadResult();
+        next();
+    });
 }
 
 $.fn.cssFadeOut = function() {
@@ -57,13 +73,6 @@ function welcomeAnimation() {
     $('#welcome, #crocobox, #motivation, #get-started').addClass('fade-in');
     $('#get-started').addClass('fade-in').click(function() {
         slideToNextRow(this, 0);
-    });
-}
-
-// Slide down a copy of the document creation to make it seem like it's "following you"
-function slideInUploadResult() {
-    $('#document-result-copy').addClass('fade-in').animate({top: 0}, 1000, function() {
-        $(this).children('span').addClass('flashing-highlight');
     });
 }
 
@@ -139,7 +148,6 @@ $('#convert-document').submit(function() {
         $('#convert-button').click(function() {
             slideToNextRow(this, 0);
             convertAnimation();
-            slideInUploadResult();
             return false;
         })
         .delay(1700)
@@ -176,7 +184,7 @@ $('#create-session').submit(function() {
     $('#session-code').text(buildSessionRequestString(window.boxViewToken, $('#document-id').val()));
 
     // Remove the document result
-    $('#document-result-copy').removeClass('transparent fade-in').fadeOut('slo', function() {
+    $('#document-result-copy').removeClass('transparent fade-in').fadeOut('slow', function() {
         // Fade in the API request
         $('#session-code').addClass('fade-in').tooltip('toggle');
         // Fade in the API response
