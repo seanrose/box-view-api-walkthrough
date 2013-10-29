@@ -122,6 +122,22 @@
             <h1><a href="http://developers.box.com/view/" target="_blank">Click here to read the docs and see what else is possible with the Box View API!</a></h1>
         </div>
     </div>
+    <!-- Error Modal -->
+    <div class="modal fade" id="fail-modal" tabindex="-1" role="dialog" aria-labelledby="fail-model" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Oh no, something went wrong!</h3>
+                </div>
+                <div class="modal-body">
+                    <img id="fail" src="{{ url_for('static', filename='img/fail.gif') }}" class="img-rounded img-responsive" alt="Fail Dog">
+                </div>
+                <div class="modal-footer">
+                    <a href="." type="button" class="btn btn-lg btn-block">Start Over?</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="{{  url_for('static', filename='js/animations-min.js') }}"></script>

@@ -50,6 +50,10 @@ function enableScroll() {
     window.onmousewheel = document.onmousewheel = document.onkeydown = null;
 }
 
+function triggerFailModal() {
+    $('#fail-modal').modal();
+}
+
 // Builds the curl request for uploading a file
 function buildUploadRequestString(boxViewAPIKey, url) {
     var firstPiece = 'curl https:\/\/view-api.box.com\/1\/documents \\\r\n-H \"Authorization: Token ';
@@ -90,7 +94,7 @@ function uploadAnimation() {
 
 function convertAnimation() {
     $('#doc-svg').addClass('spin-and-fade-out');
-    $('#html-svg').delay(4800).queue(function(next) {
+    $('#html-svg').delay(3600).queue(function(next) {
         $('#doc-svg').remove();
         $(this).removeClass('hidden').addClass('fade-in-and-spin');
         slideToNextRow(this, 3000);
@@ -172,6 +176,9 @@ function convertDocumentAnimation() {
             }),
             dataType: 'json',
             url: '/upload',
+            error: function() {
+                triggerFailModal();
+            }
         }).done(function(data) {
             // Trolling
             data.status = 'done';
@@ -219,6 +226,9 @@ function createSessionAnimation() {
             }),
             dataType: 'json',
             url: '/session',
+            error: function() {
+                triggerFailModal();
+            }
         }).done(function(data) {
             // Load the hidden iframe into the page as soon as possible
             $('iframe').attr('src', data.session_url);
