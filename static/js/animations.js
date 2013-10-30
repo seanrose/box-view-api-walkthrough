@@ -50,7 +50,8 @@ function enableScroll() {
     window.onmousewheel = document.onmousewheel = document.onkeydown = null;
 }
 
-function triggerFailModal() {
+function triggerFailModal(selector) {
+    $(selector).closest('.row').addClass('blurred');
     $('#fail-modal').modal();
 }
 
@@ -164,6 +165,7 @@ $('#set-token').submit(function() {
 function convertDocumentAnimation() {
     // Send the URL to Box View for conversion
     $('#convert-document').submit(function() {
+        var self = this;
         analytics.track("Uploaded Document for Conversion");
         unbindSubmitEvents(this);
         // Call to the server which uploads the document to the View API
@@ -177,7 +179,7 @@ function convertDocumentAnimation() {
             dataType: 'json',
             url: '/upload',
             error: function() {
-                triggerFailModal();
+                triggerFailModal(self);
             }
         }).done(function(data) {
             // Trolling
@@ -214,6 +216,7 @@ function convertDocumentAnimation() {
 function createSessionAnimation() {
     // Creates a session for the document ID
     $('#create-session').submit(function() {
+        var self = this;
         analytics.track("Created Session");
         unbindSubmitEvents(this);
         // Call to the server which requests a session from the View API
@@ -227,7 +230,7 @@ function createSessionAnimation() {
             dataType: 'json',
             url: '/session',
             error: function() {
-                triggerFailModal();
+                triggerFailModal(self);
             }
         }).done(function(data) {
             // Load the hidden iframe into the page as soon as possible
