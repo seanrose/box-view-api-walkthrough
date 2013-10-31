@@ -178,7 +178,8 @@ function convertDocumentAnimation() {
             }),
             dataType: 'json',
             url: '/upload',
-            error: function() {
+            error: function(data) {
+                analytics.track('Error: ' + data.responseText);
                 triggerFailModal(self);
             }
         }).done(function(data) {
@@ -229,8 +230,9 @@ function createSessionAnimation() {
             }),
             dataType: 'json',
             url: '/session',
-            error: function() {
-                triggerFailModal(self);
+            error: function(data) {
+                analytics.track('Error: ' + data.responseText);
+                triggerFailModal(self, status);
             }
         }).done(function(data) {
             // Load the hidden iframe into the page as soon as possible
