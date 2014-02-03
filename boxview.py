@@ -47,6 +47,7 @@ class BoxViewClient(object):
         self.requests = requests.session()
         self.requests.headers = auth_header
         self.url = s.VIEW_API_URL
+        self.upload_url = s.UPLOAD_VIEW_API_URL
 
     # Core API Methods
 
@@ -60,6 +61,18 @@ class BoxViewClient(object):
         data = json.dumps({'url': url})
 
         response = self.requests.post(resource, headers=headers, data=data)
+
+        return response
+
+    @raise_for_view_error
+    def multipart_upload_document(self, document):
+        """
+        """
+
+        resource = '{}{}'.format(self.upload_url, DOCUMENTS_RESOURCE)
+        files = {'file': document}
+
+        response = self.requests.post(resource, files=files)
 
         return response
 
@@ -79,13 +92,16 @@ class BoxViewClient(object):
         return response
 
     @raise_for_view_error
-    def create_session(self, document_id):
+    def create_session(self, document_id, expires_at=None):
         """
         """
 
         resource = '{}{}'.format(self.url, SESSIONS_RESOURCE)
         headers = {'Content-type': 'application/json'}
-        data = json.dumps({'document_id': document_id})
+        data = {'document_id': document_id}
+        if expires_at:
+            data['expires_at'] = expires_at
+        data = json.dumps(data)
 
         response = self.requests.post(resource, headers=headers, data=data)
 
@@ -110,8 +126,8 @@ class BoxViewClient(object):
         return document['status']
 
     @staticmethod
-    def create_session_url(session_id):
+    def create_session_url(session_id, theme='light'):
         """
         """
 
-        return '{}{}'.format(s.SESSION_BASE_URL, session_id)
+        return '{}{}?theme={}'.format(s.SESSION_BASE_URL, session_id, theme)

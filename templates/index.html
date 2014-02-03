@@ -11,8 +11,8 @@
 </script>
 </head>
 <body>
-    <div class="row grey" id="section-1">
-        <div class="col-md-6 col-md-offset-3 information vertically-centered-hack">
+    <div class="row vertically-centered one-item grey" id="section-1">
+        <div class="col-md-6 col-md-offset-3 information">
             <h1 id="welcome" class="transparent">Box View is the world's most advanced document conversion platform.</h1>
             <img id="crocobox" src="{{ url_for('static', filename='img/crocobox.png') }}" class="img-responsive transparent" alt="Crocobox Logo">
             <p id="motivation" class="lead transparent">Convert your first document in less than a minute!</p>
@@ -20,8 +20,8 @@
             <button id="get-started" class="btn btn-default btn-lg btn-block transparent">Get Started</button>
         </div>
     </div>
-    <div class="row grey" id="section-1">
-        <div class="col-md-4 col-md-offset-4 vertically-centered">
+    <div class="row vertically-centered one-item grey" id="section-1">
+        <div class="col-md-4 col-md-offset-4">
             <form id="set-token" role="form">
                 <div class="form-group">
                     <label for="box-view-token"><h2 id="section-1-heading">Enter your Box View API key.</h2></label>
@@ -32,15 +32,15 @@
             </form>
         </div>
     </div>
-    <div class="row dark-green" id="section-2">
-        <div class="col-md-6 col-md-offset-3 information vertically-centered">
+    <div class="row vertically-centered one-item dark-green" id="section-2">
+        <div class="col-md-6 col-md-offset-3 information">
             <!-- Cloud Upload icon designed by Adam Whitcroft from The Noun Project http://thenounproject.com/noun/cloud-upload/#icon-No2633 -->
             <img id="upload-svg" src="{{ url_for('static', filename='img/upload.svg') }}" class="img-responsive svg" alt="Upload Cloud">
             <h2 id="upload-prompt">First you need to upload a document to convert!</h2>
         </div>
     </div>
-    <div class="row dark-green" id="section-2">
-        <div class="col-md-3 col-md-offset-1 vertically-centered">
+    <div class="row vertically-centered two-items dark-green" id="section-2">
+        <div class="col-md-3 col-md-offset-1">
             <form id="convert-document" role="form">
                 <div class="form-group">
                     <label for="document-url"><h2>Enter the URL of a PDF or Office document to convert.</h2></label>
@@ -50,7 +50,7 @@
                 <button type="submit" id="convert-button" class="btn btn-default btn-lg btn-block transparent">Convert Document</button>
             </form>
         </div>
-        <div class="col-md-6 col-md-offset-1 vertically-centered">
+        <div class="col-md-6 col-md-offset-1">
             <pre class="transparent" data-toggle="tooltip" data-delay="1300" data-placement="top" title="The API request" id="convert-code">curl https://view-api.box.com/1/documents \
 -H "Authorization: Token YOUR_API_KEY" \
 -H "Content-Type: application/json" \
@@ -66,8 +66,8 @@
 }</pre>
         </div>
     </div>
-    <div class="row blue" id="section-3">
-        <div class="col-md-6 col-md-offset-3 information vertically-centered">
+    <div class="row vertically-centered one-item blue" id="section-3">
+        <div class="col-md-6 col-md-offset-3 information">
             <!-- Designed by Prerak Patel from The Noun Project http://thenounproject.com/noun/document/#icon-No4561 -->
             <img id="doc-svg" src="{{ url_for('static', filename='img/document.svg') }}" class="img-responsive svg" alt="Document">
             <!-- HTML Code icon Iris Li from The Noun Project http://thenounproject.com/noun/html-code/#icon-No13694 -->
@@ -75,8 +75,8 @@
             <h2 id="session-prompt">And now we magically turn the document into HTML5!</h2>
         </div>
     </div>
-    <div class="row blue" id="section-3">
-        <div class="col-md-3 col-md-offset-1 vertically-centered">
+    <div class="row vertically-centered two-items blue" id="section-3">
+        <div class="col-md-3 col-md-offset-1">
             <form id="create-session" role="form">
                 <div class="form-group">
                     <label for="document-url"><h2>Enter the id of the document to create a viewing session.</h2></label>
@@ -86,7 +86,7 @@
                 <button type="submit" id="session-button" class="btn btn-default btn-lg btn-block transparent">Create Session</button>
             </form>
         </div>
-        <div class="col-md-6 col-md-offset-1 vertically-centered">
+        <div class="col-md-6 col-md-offset-1">
             <pre class="transparent" data-toggle="tooltip" data-delay="1300" data-placement="bottom" title="The response from the API" id="document-result-copy">{
     "type": "document",
     "id": "2da6cf9261824fb0a4fe532f94d14625",
@@ -107,8 +107,8 @@
 }</pre>
         </div>
     </div>
-    <div class="row light-green" id="section-4">
-        <div class="col-md-3 col-md-offset-1 vertically-centered">
+    <div class="row vertically-centered two-items light-green" id="section-4">
+        <div class="col-md-3 col-md-offset-1">
             <h1>Congratulations, you converted your first document!</h1>
             <h3 class="doc-help transparent">Try scrolling it,</h3>
             <h3 class="doc-help transparent"><a id="doc-help-link" href="" target="_blank">or click here to open it in a new tab!</a></h3>
@@ -117,8 +117,8 @@
             <iframe class="transparent" data-toggle="tooltip" data-delay="1300" data-placement="left" title="Try scrolling this!" seamless=""></iframe>
         </div>
     </div>
-    <div class="row light-green" id="section-5">
-        <div class="col-md-6 col-md-offset-3 vertically-centered information">
+    <div class="row vertically-centered light-green" id="section-5">
+        <div class="col-md-6 col-md-offset-3 information">
             <h1><a href="http://developers.box.com/view/" target="_blank">Click here to read the docs and see what else is possible with the Box View API!</a></h1>
         </div>
     </div>

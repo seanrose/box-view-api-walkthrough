@@ -107,14 +107,27 @@ img {
 }
 
 .vertically-centered {
-    top: 25%;
-    height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.vertically-centered-hack {
-  top: 10%;
-  height: 100%
+.two-items {
+  align-items: center;
 }
+
+.one-item {
+  flex-direction: column;
+}
+
+// .vertically-centered {
+//     top: 25%;
+//     height: 100%;
+// }
+
+// .vertically-centered-hack {
+//   top: 10%;
+//   height: 100%
+// }
 
 /* Animations */
 
