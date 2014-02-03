@@ -107,6 +107,9 @@ img {
 }
 
 .vertically-centered {
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: -webkit-box;
   display: flex;
   justify-content: center;
 }
