@@ -77,12 +77,17 @@ img {
   background-color: #57c17d; }
 
 .vertically-centered {
-  top: 25%;
-  height: 100%; }
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: -webkit-box;
+  display: flex;
+  justify-content: center; }
 
-.vertically-centered-hack {
-  top: 10%;
-  height: 100%; }
+.two-items {
+  align-items: center; }
+
+.one-item {
+  flex-direction: column; }
 
 /* Animations */
 .flashing-highlight {
