@@ -108,8 +108,8 @@ img {
 
 .vertically-centered {
   display: -ms-flexbox;
-  display: -moz-box;
-  display: -webkit-box;
+  display: -moz-flex;
+  display: -webkit-flex;
   display: flex;
   -moz-justify-content: center;
   -webkit-justify-content: center;
