@@ -81,12 +81,18 @@ img {
   display: -moz-box;
   display: -webkit-box;
   display: flex;
+  -moz-justify-content: center;
+  -webkit-justify-content: center;
   justify-content: center; }
 
 .two-items {
+  -moz-align-items: center;
+  -webkit-align-items: center;
   align-items: center; }
 
 .one-item {
+  -moz-flex-direction: column;
+  -webkit-flex-direction: column;
   flex-direction: column; }
 
 /* Animations */
