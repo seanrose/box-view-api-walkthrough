@@ -41,6 +41,24 @@ def upload_document():
     return jsonify(document)
 
 
+@app.route('/desktop-upload', methods=['POST'])
+def desktop_upload_document():
+    """
+    """
+    box_view_client = create_box_view_client()
+    uploaded_file = request.files['file']
+
+    try:
+        document = box_view_client.multipart_upload_document(uploaded_file)
+    except(BoxViewError):
+        return jsonify({'error': 'an error occurred'}), 400
+
+    document_id = document.json()['id']
+    print 'Document ID is {}'.format(document_id)
+
+    return jsonify(document.json())
+
+
 @app.route('/session', methods=['POST'])
 def create_session():
     """
@@ -78,50 +96,6 @@ def create_session():
 
     return jsonify(combined_response)
 
-
-@app.route('/link')
-def link_generator():
-    return render_template('link.html')
-
-@app.route('/upload-convert', methods=['POST'])
-def upload_convert_document():
-    """
-    """
-
-    box_view_client = BoxViewClient('esmmrytsvw3sgl0ulvzkxlcli2huetls')
-    uploaded_file = request.files['file']
-
-    try:
-        document = box_view_client.multipart_upload_document(uploaded_file)
-    except(BoxViewError):
-        return jsonify({'error': 'an error occurred'}), 400
-
-    document_id = document.json()['id']
-    print 'Document ID is {}'.format(document_id)
-
-    document_ready = False
-    wait_time = 0
-    while not document_ready:
-        sleep(1)
-        wait_time += 1
-        document_ready = box_view_client.ready_to_view(document_id)
-        print '{} seconds elaspe'.format(wait_time)
-
-    try:
-        session = box_view_client.create_session(document_id).json()
-    except(BoxViewError):
-        return jsonify({'error': 'an error occurred'}), 400
-
-    session_url = box_view_client.create_session_url(session['id'])
-
-    print 'Session is {}'.format(session_url)
-
-    combined_response = {
-        'session_url': session_url,
-        'session': session
-    }
-
-    return jsonify(combined_response)
 
 if __name__ == '__main__':
     app.debug = True
