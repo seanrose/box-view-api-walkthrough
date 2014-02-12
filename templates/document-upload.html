@@ -1,0 +1,27 @@
+    <div class="row vertically-centered two-items dark-green" id="section-2">
+        <div class="col-md-3 col-md-offset-1">
+            <form id="convert-document" role="form">
+                <div class="form-group">
+                    <label for="document-url"><h2>Enter the URL of a PDF or Office document to convert.</h2></label>
+                    <input type="url" class="form-control input-lg" id="document-url" placeholder="URL ending in .pdf, .doc(x), .ppt(x), or .xls(x)">
+                    <span class="help-block"><a href="" id="url-help">Help! Fill one in for me!</a></span>
+                </div>
+                <button type="submit" id="convert-button" class="btn btn-default btn-lg btn-block transparent">Convert Document</button>
+            </form>
+        </div>
+        <div class="col-md-6 col-md-offset-1">
+            <pre class="transparent" data-toggle="tooltip" data-delay="1300" data-placement="top" title="The API request" id="convert-code">curl https://view-api.box.com/1/documents \
+-H "Authorization: Token YOUR_API_KEY" \
+-H "Content-Type: application/json" \
+-d '{"url": "https://cloud.box.com/shared/static/4qhegqxubg8ox0uj5ys8.pdf"}' \
+-X POST</pre>
+            <pre class="transparent" data-toggle="tooltip" data-delay="1300" data-placement="bottom" title="The response from the API" id="convert-result">{
+    "type": "document",
+    "id": "2da6cf9261824fb0a4fe532f94d14625",
+    "status": "done",
+    "name": "My First Doc",
+    "created_at": "2013-08-30T00:17:37Z",
+    "modified_at": "2013-08-30T00:17:37Z"
+}</pre>
+        </div>
+    </div>

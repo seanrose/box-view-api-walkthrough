@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta class="section-anchor" name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
 <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -11,6 +12,7 @@
 </script>
 </head>
 <body>
+<!-- Get Started Section -->
     <div class="row vertically-centered one-item grey" id="section-1">
         <div class="col-md-6 col-md-offset-3 information">
             <h1 id="welcome" class="transparent">Box View is the world's most advanced document conversion platform.</h1>
@@ -20,6 +22,7 @@
             <button id="get-started" class="btn btn-default btn-lg btn-block transparent">Get Started</button>
         </div>
     </div>
+<!-- API Key Entry Section -->
     <div class="row vertically-centered one-item grey" id="section-1">
         <div class="col-md-4 col-md-offset-4">
             <form id="set-token" role="form">
@@ -32,6 +35,7 @@
             </form>
         </div>
     </div>
+<!-- Upload Animation -->
     <div class="row vertically-centered one-item dark-green" id="section-2">
         <div class="col-md-6 col-md-offset-3 information">
             <!-- Cloud Upload icon designed by Adam Whitcroft from The Noun Project http://thenounproject.com/noun/cloud-upload/#icon-No2633 -->
@@ -39,6 +43,7 @@
             <h2 id="upload-prompt">First you need to upload a document to convert!</h2>
         </div>
     </div>
+<!-- Document Upload Section -->
     <div class="row vertically-centered two-items dark-green" id="section-2">
         <div class="col-md-3 col-md-offset-1">
             <form id="convert-document" role="form">
@@ -66,6 +71,7 @@
 }</pre>
         </div>
     </div>
+<!-- Conversion Animation -->
     <div class="row vertically-centered one-item blue" id="section-3">
         <div class="col-md-6 col-md-offset-3 information">
             <!-- Designed by Prerak Patel from The Noun Project http://thenounproject.com/noun/document/#icon-No4561 -->
@@ -75,6 +81,7 @@
             <h2 id="session-prompt">And now we magically turn the document into HTML5!</h2>
         </div>
     </div>
+<!-- Session Create Section -->
     <div class="row vertically-centered two-items blue" id="section-3">
         <div class="col-md-3 col-md-offset-1">
             <form id="create-session" role="form">
@@ -107,22 +114,17 @@
 }</pre>
         </div>
     </div>
+<!-- Suuccess Section -->
     <div class="row vertically-centered two-items light-green" id="section-4">
         <div class="col-md-3 col-md-offset-1">
             <h1>Congratulations, you converted your first document!</h1>
-            <h3 class="doc-help transparent">Try scrolling it,</h3>
-            <h3 class="doc-help transparent"><a id="doc-help-link" href="" target="_blank">or click here to open it in a new tab!</a></h3>
-        </div>
+            </div>
         <div class="col-xs-8 contentframe">
             <iframe class="transparent" data-toggle="tooltip" data-delay="1300" data-placement="left" title="Try scrolling this!" seamless=""></iframe>
         </div>
     </div>
-    <div class="row vertically-centered light-green" id="section-5">
-        <div class="col-md-6 col-md-offset-3 information">
-            <h1><a href="http://developers.box.com/view/" target="_blank">Click here to read the docs and see what else is possible with the Box View API!</a></h1>
-        </div>
-    </div>
-    <!-- Error Modal -->
+
+<!-- Error Modal -->
     <div class="modal fade" id="fail-modal" tabindex="-1" role="dialog" aria-labelledby="fail-model" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -138,6 +140,7 @@
             </div>
         </div>
     </div>
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="{{  url_for('static', filename='js/animations-min.js') }}"></script>
