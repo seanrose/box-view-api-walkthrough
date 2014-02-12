@@ -34,7 +34,8 @@ def upload_document():
     except(BoxViewError):
         return jsonify({'error': 'an error occurred'}), 400
 
-    document_id = document.json()['id']
+    print document
+    document_id = document['id']
 
     print 'Document ID is {}'.format(document_id)
 
@@ -50,14 +51,15 @@ def desktop_upload_document():
     uploaded_file = request.files['file']
 
     try:
-        document = box_view_client.multipart_upload_document(uploaded_file)
+        api_response = box_view_client.multipart_upload_document(uploaded_file)
+        document = api_response.json()
     except(BoxViewError):
         return jsonify({'error': 'an error occurred'}), 400
 
-    document_id = document.json()['id']
+    document_id = document['id']
     print 'Document ID is {}'.format(document_id)
 
-    return jsonify(document.json())
+    return jsonify(document)
 
 
 @app.route('/session', methods=['POST'])
@@ -86,13 +88,13 @@ def create_session():
     except(BoxViewError):
         return jsonify({'error': 'an error occurred'}), 400
 
-    session_url = box_view_client.create_session_url(session.json()['id'])
+    session_url = box_view_client.create_session_url(session['id'])
 
     print 'Session is {}'.format(session_url)
 
     combined_response = {
         'session_url': session_url,
-        'session': session.json()
+        'session': session
     }
 
     return jsonify(combined_response)

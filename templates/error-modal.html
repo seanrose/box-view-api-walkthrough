@@ -1,0 +1,15 @@
+    <div class="modal fade" id="fail-modal" tabindex="-1" role="dialog" aria-labelledby="fail-model" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Oh no, something went wrong!</h3>
+                </div>
+                <div class="modal-body">
+                    <img id="fail" src="{{ url_for('static', filename='img/fail.gif') }}" class="img-rounded img-responsive" alt="Fail Dog">
+                </div>
+                <div class="modal-footer">
+                    <a href="." type="button" class="btn btn-lg btn-block">Start Over?</a>
+                </div>
+            </div>
+        </div>
+    </div>

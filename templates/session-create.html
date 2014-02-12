@@ -1,0 +1,32 @@
+    <div class="row vertically-centered two-items blue" id="section-3">
+        <div class="col-md-3 col-md-offset-1">
+            <form id="create-session" role="form">
+                <div class="form-group">
+                    <label for="document-url"><h2>Enter the id of the document to create a viewing session.</h2></label>
+                    <input class="form-control input-lg" id="document-id" placeholder="The document id">
+                    <span id="document-id-help" class="help-block hidden"></span>
+                </div>
+                <button type="submit" id="session-button" class="btn btn-default btn-lg btn-block transparent">Create Session</button>
+            </form>
+        </div>
+        <div class="col-md-6 col-md-offset-1">
+            <pre class="transparent" data-toggle="tooltip" data-delay="1300" data-placement="bottom" title="The response from the API" id="document-result-copy">{
+    "type": "document",
+    "id": "2da6cf9261824fb0a4fe532f94d14625",
+    "status": "done",
+    "name": "My First Doc",
+    "created_at": "2013-08-30T00:17:37Z",
+    "modified_at": "2013-08-30T00:17:37Z"
+}</pre>
+            <pre class="transparent" data-toggle="tooltip" data-delay="1300" data-placement="top" title="The API request" id="session-code">curl https://view-api.box.com/1/sessions \
+-H "Authorization: Token YOUR_API_KEY" \
+-H "Content-Type: application/json" \
+-d '{"document_id": "ABC123"}' \
+-X POST</pre>
+            <pre class="transparent" data-toggle="tooltip" data-delay="1300" data-placement="bottom" title="The response from the API" id="session-result">{
+    "type": "session",
+    "id": "IyA4Ij8IzE_Wih20hML3ihxEOul1T4rxHLBtwa4IRg9m-FApz80OtEwst_RmnGq8SzJRsGaEU0UWSotJCW33KUeJ0Ah5uQ",
+    "expires_at": "2013-09-11T19:52:09Z"
+}</pre>
+        </div>
+    </div>
