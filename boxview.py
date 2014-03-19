@@ -126,8 +126,11 @@ class BoxViewClient(object):
         return document['status']
 
     @staticmethod
-    def create_session_url(session_id, theme='light'):
+    def create_session_url(session_id, theme=None):
         """
+        white by default
         """
+        if not theme:
+            theme = 'light'
 
         return '{}{}?theme={}'.format(s.SESSION_BASE_URL, session_id, theme)
