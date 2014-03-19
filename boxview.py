@@ -6,6 +6,7 @@ from boxviewerror import raise_for_view_error
 
 DOCUMENTS_RESOURCE = '/documents'
 SESSIONS_RESOURCE = '/sessions'
+VIEW_RESOURCE = '/view'
 
 PROCESSING = 'processing'
 DONE = 'done'
@@ -128,9 +129,14 @@ class BoxViewClient(object):
     @staticmethod
     def create_session_url(session_id, theme=None):
         """
-        white by default
         """
         if not theme:
             theme = 'light'
 
-        return '{}{}?theme={}'.format(s.SESSION_BASE_URL, session_id, theme)
+        return '{}{}/{}{}?theme={}'.format(
+            s.VIEW_API_URL,
+            SESSIONS_RESOURCE,
+            session_id,
+            VIEW_RESOURCE,
+            theme
+        )
