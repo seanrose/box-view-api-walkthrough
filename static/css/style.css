@@ -1,11 +1,6 @@
 /* Typography */
-@font-face {
-  font-family: 'Museo Sans';
-  src: url("../fonts/MuseoSans_500-webfont.eot");
-  src: url("../fonts/MuseoSans_500-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/MuseoSans_500-webfont.woff") format("woff"), url("../fonts/MuseoSans_500-webfont.ttf") format("truetype"), url("../fonts/MuseoSans_500-webfont.svg#webfont") format("svg"); }
-
-h1, h2, h3, h4, body, .help-block, a {
-  font-family: 'Museo Sans', sans-serif; }
+h1, h2, h3, h4, body, .help-block, a, label, input, .btn, body {
+  font-family: "proxima-nova","Helvetica Neue",Helvetica,Arial,sans-serif; }
 
 h1, h2, body, .help-block, a {
   color: snow; }
@@ -19,7 +14,7 @@ a:hover {
   border-bottom-color: #cec9c5; }
 
 pre {
-  font-family: 'Source Code Pro', sans-serif; }
+  font-family: "source-code-pro", sans-serif; }
 
 .tooltip-inner {
   font-size: 150%; }
@@ -433,7 +428,13 @@ img {
   border-bottom: none; }
 
 /* Miscellaneous */
-iframe {
+.large-iframe {
   border: none;
   height: 100%;
   width: 100%; }
+
+.small-iframe {
+  border: none;
+  height: 100%;
+  width: 50%;
+  margin: auto; }

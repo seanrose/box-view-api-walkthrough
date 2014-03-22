@@ -1,20 +1,11 @@
 /* Typography */
 
-@font-face{
-    font-family: 'Museo Sans';
-    src: url('../fonts/MuseoSans_500-webfont.eot');
-    src: url('../fonts/MuseoSans_500-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/MuseoSans_500-webfont.woff') format('woff'),
-         url('../fonts/MuseoSans_500-webfont.ttf') format('truetype'),
-         url('../fonts/MuseoSans_500-webfont.svg#webfont') format('svg');
-}
-
-h1, h2, h3, h4, body, .help-block, a {
-    font-family: 'Museo Sans', sans-serif;
+h1, h2, h3, h4, body, .help-block, a, label, input, .btn, body {
+  font-family: "proxima-nova","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 h1, h2, body, .help-block, a {
-        color: rgb(255, 250, 250);
+  color: rgb(255, 250, 250);
 }
 
 a {
@@ -28,7 +19,7 @@ a:hover {
 }
 
 pre {
-    font-family: 'Source Code Pro', sans-serif;
+    font-family: "source-code-pro", sans-serif;
 }
 
 .tooltip-inner {
@@ -127,16 +118,6 @@ img {
   -webkit-flex-direction: column;
   flex-direction: column;
 }
-
-// .vertically-centered {
-//     top: 25%;
-//     height: 100%;
-// }
-
-// .vertically-centered-hack {
-//   top: 10%;
-//   height: 100%
-// }
 
 /* Animations */
 
@@ -261,8 +242,15 @@ img {
 
 /* Miscellaneous */
 
-iframe {
+.large-iframe {
     border: none;
     height: 100%;
     width: 100%;
+}
+
+.small-iframe {
+    border: none;
+    height: 100%;
+    width: 50%;
+    margin: auto;
 }
