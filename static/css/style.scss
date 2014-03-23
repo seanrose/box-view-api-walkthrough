@@ -2,10 +2,15 @@
 
 h1, h2, h3, h4, body, .help-block, a, label, input, .btn, body {
   font-family: "proxima-nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+  color: rgb(255, 255, 255);
 }
 
-h1, h2, body, .help-block, a {
-  color: rgb(255, 250, 250);
+.dark {
+  color: rgb(51, 51, 51);
+}
+
+.dark a {
+  border-bottom: 1px solid rgb(51, 51, 51);
 }
 
 a {
@@ -45,25 +50,31 @@ img {
 }
 
 .form-control:focus {
-    border-color: #B0E994;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(176, 233, 148, 1);
-    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(176, 233, 148, 1);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(176, 233, 148, 1);
+    border-color: rgba(30, 114, 186, 1);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(30, 114, 186, 1);
+    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(30, 114, 186, 1);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(30, 114, 186, 1);
 }
 
 
 
 .btn, .btn:focus {
-    background-color: rgba(176, 233, 148, 1);
+    color: rgb(255, 255, 255);
+    background-color: rgba(30, 114, 186, 1);
     outline: none;
+    border: none;
 }
 
 .btn:hover {
-    background-color: rgba(176, 233, 148, .9);
+    background-color: rgba(30, 114, 186, .9);
+    color: rgb(255, 255, 255);
+    border: none;
 }
 
 .btn:active {
-    background-color: rgba(176, 233, 148, .8);
+    color: rgb(255, 255, 255);
+    background-color: rgba(30, 114, 186, .8);
+    border: none;
 }
 
 .hidden {
@@ -82,19 +93,19 @@ img {
 /* Styling for each section */
 
 .grey {
-    background-color: rgb(35, 42, 51);
+    background-color: rgb(230, 235, 239);
 }
 
 .dark-green {
-    background-color: rgb(42, 104, 75);
+    background-color: rgb(69, 69, 69);
 }
 
 .blue {
-    background-color: rgb(63, 165, 169);
+    background-color: rgb(32, 186, 239);
 }
 
 .light-green {
-    background-color: rgb(87, 193, 125);
+    background-color: rgb(30, 113, 186);
 }
 
 .vertically-centered {
@@ -128,10 +139,10 @@ img {
           animation: flashHighlight 1.2s .5s ease-in-out infinite;
 }
 
-@-webkit-keyframes flashHighlight { 0% { background-color: transparent; } 50% { background-color: #B0E994; } 100% { background-color: transparent; } }
-   @-moz-keyframes flashHighlight { 0% { background-color: transparent; } 50% { background-color: #B0E994; } 100% { background-color: transparent; } }
-     @-o-keyframes flashHighlight { 0% { background-color: transparent; } 50% { background-color: #B0E994; } 100% { background-color: transparent; } }
-        @keyframes flashHighlight { 0% { background-color: transparent; } 50% { background-color: #B0E994; } 100% { background-color: transparent; } }
+@-webkit-keyframes flashHighlight { 0% { background-color: transparent; } 50% { background-color: rgba(30, 114, 186, 0.6); } 100% { background-color: transparent; } }
+   @-moz-keyframes flashHighlight { 0% { background-color: transparent; } 50% { background-color: rgba(30, 114, 186, 0.6); } 100% { background-color: transparent; } }
+     @-o-keyframes flashHighlight { 0% { background-color: transparent; } 50% { background-color: rgba(30, 114, 186, 0.6); } 100% { background-color: transparent; } }
+        @keyframes flashHighlight { 0% { background-color: transparent; } 50% { background-color: rgba(30, 114, 186, 0.6); } 100% { background-color: transparent; } }
 
 .fade-in {
   -webkit-animation: fadeIn 1.2s .5s forwards;
