@@ -41,6 +41,12 @@ body, html, .row, .contentframe {
 
 /* Images */
 
+.three-dee-doc {
+  width: 35em;
+  height: 35em;
+  margin: auto;
+}
+
 img {
     margin: auto;
 }
@@ -77,6 +83,23 @@ img {
     border: none;
 }
 
+.btn-light, .btn-light:focus {
+  background-color: rgba(255,255,255,1);
+  color: #1b4075;
+}
+
+.btn-light:hover {
+    background-color: rgba(255,255,255,.9);
+    color: #1b4075;
+    border: none;
+}
+
+.btn-light:active {
+    color: #1b4075;
+    background-color: rgba(255,255,255,.8);
+    border: none;
+}
+
 .hidden {
   display: none;
 }
@@ -93,11 +116,11 @@ img {
 /* Styling for each section */
 
 .grey {
-    background-color: rgb(230, 235, 239);
+    background-color: rgb(69, 69, 69);
 }
 
 .dark-green {
-    background-color: rgb(69, 69, 69);
+    background-color: rgb(30, 113, 186);
 }
 
 .blue {
@@ -105,7 +128,7 @@ img {
 }
 
 .light-green {
-    background-color: rgb(30, 113, 186);
+    background-color: rgb(230, 235, 239);
 }
 
 .vertically-centered {

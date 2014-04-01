@@ -11,14 +11,42 @@
 </script>
 <script type="text/javascript" src="//use.typekit.net/vxd0vjj.js"></script>
 <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+<script type="text/javascript">
+// Prevent variables from being global
+(function () {
+
+      /*
+          1. Inject CSS which makes iframe invisible
+      */
+
+    var div = document.createElement('div'),
+        ref = document.getElementsByTagName('base')[0] ||
+              document.getElementsByTagName('script')[0];
+
+    div.innerHTML = '&shy;<style> iframe { visibility: hidden; } </style>';
+
+    ref.parentNode.insertBefore(div, ref);
+
+
+    /*
+        2. When window loads, remove that CSS,
+           making iframe visible again
+    */
+
+    window.onload = function() {
+        div.parentNode.removeChild(div);
+    }
+
+})();
+</script>
 </head>
 <body>
 <!-- Get Started Section -->
     <div class="row vertically-centered one-item grey" id="section-1">
         <div class="col-md-6 col-md-offset-3 information">
-            <h1 id="welcome" class="transparent dark">Box View is the world's most advanced document conversion platform</h1>
-            <img id="crocobox" src="{{ url_for('static', filename='img/crocobox.png') }}" class="img-responsive transparent" alt="Crocobox Logo">
-            <p id="motivation" class="lead transparent dark">Convert your first document in less than a minute</p>
+            <h1 id="welcome" class="transparent">Box View is the world's most advanced document conversion platform</h1>
+            <iframe class="three-dee-doc" src="//s3-us-west-2.amazonaws.com/demos.boxviewapi.com/3d.html" seamless=""></iframe>
+            <p id="motivation" class="lead transparent">Convert your first document in less than a minute</p>
             <br>
             <button id="get-started" class="btn btn-default btn-lg transparent">Get Started</button>
         </div>
@@ -29,9 +57,9 @@
         <div class="col-md-4 col-md-offset-4">
             <form id="set-token" role="form">
                 <div class="form-group">
-                    <label for="box-view-token"><h2 id="section-1-heading" class="dark">Enter your Box View API key</h2></label>
+                    <label for="box-view-token"><h2 id="section-1-heading">Enter your Box View API key</h2></label>
                     <input class="form-control input-lg" id="box-view-token" placeholder="Your View API key">
-                    <span class="help-block dark">Don't have one? <a href="http://bit.ly/boxapikey" class="dark" target="_blank">Click here to get a Box View API key</a></span>
+                    <span class="help-block">Don't have one? <a href="http://bit.ly/boxapikey" target="_blank">Click here to get a Box View API key</a></span>
                 </div>
                 <button type="submit" id="token-button" class="btn btn-default btn-lg btn-block transparent">Next Step...</button>
             </form>
@@ -56,7 +84,7 @@
                     <input type="url" class="form-control input-lg" id="document-url" placeholder="URL ending in .pdf, .doc(x), .ppt(x), or .xls(x)">
                     <span class="help-block"><a href="" id="url-help">Help! Fill one in for me!</a></span>
                 </div>
-                <button type="submit" id="convert-button" class="btn btn-default btn-lg btn-block transparent">Convert Document</button>
+                <button type="submit" id="convert-button" class="btn btn-default btn-lg btn-block btn-light transparent">Convert Document</button>
             </form>
         </div>
         <div class="col-md-6 col-md-offset-1">
@@ -75,6 +103,7 @@
 }</pre>
         </div>
     </div>
+
 <!-- Conversion Animation -->
     <div class="row vertically-centered one-item blue" id="section-3">
         <div class="col-md-6 col-md-offset-3 information">
@@ -121,7 +150,7 @@
 <!-- Suuccess Section -->
     <div class="row vertically-centered two-items light-green" id="section-4">
         <div class="col-md-3 col-md-offset-1">
-            <h1>Congratulations, you converted your first document!</h1>
+            <h1 class="dark">Congratulations, you converted your first document!</h1>
             </div>
         <div class="col-xs-8 contentframe">
             <iframe class="transparent large-iframe" data-toggle="tooltip" data-delay="1300" data-placement="left" title="Try scrolling this!" seamless=""></iframe>
