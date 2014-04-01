@@ -62,7 +62,9 @@ img {
     box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(30, 114, 186, 1);
 }
 
-
+.btn {
+  font-weight: bold;
+}
 
 .btn, .btn:focus {
     color: rgb(255, 255, 255);
@@ -256,12 +258,12 @@ img {
 /* Modal */
 
 .modal-content {
-  background-color: rgb(35, 42, 51);
+  background-color: rgb(69, 69, 69);
   text-align: center;
 }
 
 .modal-content a {
-  color: rgb(35, 42, 51);
+  color: rgb(255, 255, 255);
 }
 
 .modal-header {

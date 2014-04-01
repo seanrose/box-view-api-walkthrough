@@ -11,40 +11,12 @@
 </script>
 <script type="text/javascript" src="//use.typekit.net/vxd0vjj.js"></script>
 <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-<script type="text/javascript">
-// Prevent variables from being global
-(function () {
-
-      /*
-          1. Inject CSS which makes iframe invisible
-      */
-
-    var div = document.createElement('div'),
-        ref = document.getElementsByTagName('base')[0] ||
-              document.getElementsByTagName('script')[0];
-
-    div.innerHTML = '&shy;<style> iframe { visibility: hidden; } </style>';
-
-    ref.parentNode.insertBefore(div, ref);
-
-
-    /*
-        2. When window loads, remove that CSS,
-           making iframe visible again
-    */
-
-    window.onload = function() {
-        div.parentNode.removeChild(div);
-    }
-
-})();
-</script>
 </head>
 <body>
 <!-- Get Started Section -->
     <div class="row vertically-centered one-item grey" id="section-1">
         <div class="col-md-6 col-md-offset-3 information">
-            <h1 id="welcome" class="transparent">Box View is the world's most advanced document conversion platform</h1>
+            <h1 id="welcome" class="transparent">Box View enables the most elegant content experiences on web and mobile with the world's best HTML5 document embedding technology</h1>
             <iframe class="three-dee-doc" src="//s3-us-west-2.amazonaws.com/demos.boxviewapi.com/3d.html" seamless=""></iframe>
             <p id="motivation" class="lead transparent">Convert your first document in less than a minute</p>
             <br>
@@ -153,7 +125,7 @@
             <h1 class="dark">Congratulations, you converted your first document!</h1>
             </div>
         <div class="col-xs-8 contentframe">
-            <iframe class="transparent large-iframe" data-toggle="tooltip" data-delay="1300" data-placement="left" title="Try scrolling this!" seamless=""></iframe>
+            <iframe id="success-iframe" class="transparent large-iframe" data-toggle="tooltip" data-delay="1300" data-placement="left" title="Try scrolling this!" seamless=""></iframe>
         </div>
     </div>
 
@@ -168,7 +140,7 @@
                     <img id="fail" src="{{ url_for('static', filename='img/fail.gif') }}" class="img-rounded img-responsive" alt="Fail Dog">
                 </div>
                 <div class="modal-footer">
-                    <a href="." type="button" class="btn btn-lg btn-block">Start Over?</a>
+                    <a href="." type="button" class="btn btn-lg btn-default btn-block">Start Over?</a>
                 </div>
             </div>
         </div>
@@ -176,6 +148,7 @@
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="{{  url_for('static', filename='js/flash.min.js') }}"></script>
     <script src="{{  url_for('static', filename='js/animations-min.js') }}"></script>
 </body>
 </html>

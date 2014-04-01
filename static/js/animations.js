@@ -236,7 +236,7 @@ function createSessionAnimation() {
             }
         }).done(function(data) {
             // Load the hidden iframe into the page as soon as possible
-            $('iframe').attr('src', data.session_url);
+            $('#success-iframe').attr('src', data.session_url);
             $('#doc-help-link').attr('href', data.session_url);
         });
 
@@ -252,7 +252,7 @@ function createSessionAnimation() {
                 $('#session-button').click(function() {
                     slideToNextRow(this, 0);
                     // Fade in the View iframe, make it feel magical!
-                    $('iframe').addClass('fade-in');
+                    $('#success-iframe').addClass('fade-in');
                     // A help text in case they don't realize you can scroll the iframe
                     $('.doc-help').delay(1200).queue(function(next) {
                         $(this).addClass('fade-in');
