@@ -50,17 +50,6 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
-	"\/static\/js\/animations-min.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/static\/js\/animations-min.js",
-		"outputAbbreviatedPath": "\/static\/js\/min\/animations-min-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
 	"\/static\/js\/animations.js": {
 		"fileType": 64,
 		"ignore": 0,
@@ -69,6 +58,17 @@
 		"outputAbbreviatedPath": "\/static\/js\/animations.min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 1,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/static\/js\/animations.min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/static\/js\/animations.min.js",
+		"outputAbbreviatedPath": "\/static\/js\/animations.min.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},

@@ -235,6 +235,8 @@ function createSessionAnimation() {
                 triggerFailModal(self, status);
             }
         }).done(function(data) {
+            // Update the response to reflect the actual session
+            $('#session-result').html(JSON.stringify(data.session, undefined, 2));
             // Load the hidden iframe into the page as soon as possible
             $('#success-iframe').attr('src', data.session_url);
             $('#doc-help-link').attr('href', data.session_url);
